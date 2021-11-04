@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    show-sql: true
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:9.6://localhost/sampleapp
+    username: banknet
+    password: banknet
+    tomcat:
+      max-active: 1
+    hikari:
+      maximum-pool-size: 10
+  sql:
+    init:
+      platform: postgres
+  profiles:
+    active: test
