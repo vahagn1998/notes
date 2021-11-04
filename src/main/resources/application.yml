@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    show-sql: true
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/assignment_db
+    username: user
+    password: pass
+    hikari:
+      auto-commit: false
+  flyway:
+    baseline-on-migrate: true
+    table: migrations
+  profiles:
+    active: dev
+  sql:
+    init:
+      platform: postgres
