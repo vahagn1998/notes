@@ -1,14 +1,20 @@
 package com.disqo.assignment.validator;
 
 import com.disqo.assignment.entity.Note;
+import com.disqo.assignment.entity.User;
 import com.disqo.assignment.exception.CustomException;
 import com.disqo.assignment.exception.FieldIncorrectException;
+import com.disqo.assignment.service.UserService;
 import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("noteValidator")
+@RequiredArgsConstructor
 public class NoteValidator implements Validator<Note> {
+  private final UserService userService;
+
   @Value("${config.validation.title_max_length:50}")
   private int titleMaxLength;
 

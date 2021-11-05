@@ -19,6 +19,7 @@ public class NoteMapper {
     Note note = Note.builder()
         .note(noteDTO.getNote())
         .title(noteDTO.getTitle())
+        .user(UserMapper.mapUserDToToUser(noteDTO.getUser()))
         .build();
     note.setId(noteDTO.getId());
     return note;

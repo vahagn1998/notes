@@ -1,3 +1,3 @@
-insert into users (id, email, password) values (1, 'one@ts.ts', '$2a$10$.reMCeGSAbXSXuzM2FPNKOEvNUVDWE5ogkpx1h8JQq6TpstpkUiR6'); -- password1
-insert into users (id, email, password) values (2, 'two@ts.ts', '$2a$10$bst6xl5KfxEzvtKZwNP81elppqPDEevEPClBeoHFr39F2o5NUdOOq'); -- password2
-insert into users (id, email, password) values (3, 'three@ts.ts', '$2a$10$PWG8M.oieXsFiHl0QqcXCOkxIgEUjsSYCmBoVWDSTbiRcfNAEQP/O'); -- password3
+insert into users ( email, password) values ( 'one@ts.ts', '$2a$10$.reMCeGSAbXSXuzM2FPNKOEvNUVDWE5ogkpx1h8JQq6TpstpkUiR6'); -- password1
+insert into users ( email, password) values ( 'two@ts.ts', '$2a$10$bst6xl5KfxEzvtKZwNP81elppqPDEevEPClBeoHFr39F2o5NUdOOq'); -- password2
+insert into users ( email, password) values ( 'three@ts.ts', '$2a$10$PWG8M.oieXsFiHl0QqcXCOkxIgEUjsSYCmBoVWDSTbiRcfNAEQP/O'); -- password3

@@ -12,4 +12,12 @@ public class UserMapper {
         .email(user.getEmail())
         .build();
   }
+
+  public User mapUserDToToUser(UserDTO userDTO) {
+    User user = User.builder()
+        .email(userDTO.getEmail())
+        .build();
+    user.setId(userDTO.getId());
+    return user;
+  }
 }

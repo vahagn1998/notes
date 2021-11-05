@@ -8,22 +8,21 @@ import com.disqo.assignment.exception.FieldIncorrectException;
 import com.disqo.assignment.repository.NoteRepository;
 import com.disqo.assignment.repository.UserRepository;
 import com.disqo.assignment.service.NoteService;
-import com.disqo.assignment.service.UserService;
 import java.util.List;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class NoteServiceTests extends AssignmentApplicationTests {
   @Autowired
   NoteService noteService;
-
-  @MockBean
-  UserService userService;
 
   @Autowired
   UserRepository userRepository;
@@ -31,20 +30,25 @@ public class NoteServiceTests extends AssignmentApplicationTests {
   @Autowired
   NoteRepository noteRepository;
 
-  @BeforeEach
+  User user;
+
+  @BeforeAll
   void beforeEach() {
     String password = "passwordTest";
-    User user = User.builder()
+    user = User.builder()
         .email("test.test@test.ts")
         .password(password)
         .build();
     userRepository.save(user);
-    Mockito.when(userService.getCurrentUser()).thenReturn(user);
   }
 
   @AfterEach
   void afterEach() {
     noteRepository.deleteAll();
+  }
+
+  @AfterAll
+  void afterAll() {
     userRepository.deleteAll();
   }
 
@@ -53,6 +57,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("title")
         .note("note")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     Note persistedNote = noteService.saveNote(note);
     Assertions.assertNotNull(persistedNote.getId());
@@ -65,6 +70,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("titlesdfasfasdffasf")
         .note("note")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     Assertions.assertThrows(FieldIncorrectException.class, () -> noteService.saveNote(note));
   }
@@ -74,6 +80,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("title")
         .note("notedasdsadasfadsfasd")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     Assertions.assertThrows(FieldIncorrectException.class, () -> noteService.saveNote(note));
   }
@@ -83,6 +90,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("title")
         .note("note")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     note = noteService.saveNote(note);
     Note note1 = noteService.getNote(note.getId());
@@ -94,6 +102,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("title")
         .note("note")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     note = noteService.saveNote(note);
     List<Note> notesByTitle = noteService.getNotesByTitle(note.getTitle());
@@ -107,6 +116,7 @@ public class NoteServiceTests extends AssignmentApplicationTests {
     Note note = Note.builder()
         .title("title")
         .note("note")
+        .user(User.builder().email(user.getEmail()).build())
         .build();
     Note persistedNote = noteService.saveNote(note);
     noteService.deleteNote(note.getId());

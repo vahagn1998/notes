@@ -25,11 +25,6 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User getCurrentUser() {
-    return null;
-  }
-
-  @Override
   public User getUser(long id) {
     return userRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("User isn't found with id=" + id));

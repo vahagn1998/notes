@@ -1,7 +1,9 @@
 package com.disqo.assignment.service;
 
 import com.disqo.assignment.entity.Note;
+import com.disqo.assignment.entity.User;
 import com.disqo.assignment.exception.EntityNotFoundException;
+import com.disqo.assignment.exception.FieldIncorrectException;
 import com.disqo.assignment.repository.NoteRepository;
 import com.disqo.assignment.validator.Validator;
 import java.util.List;
@@ -37,9 +39,13 @@ public class NoteServiceImpl implements NoteService {
   public Note saveNote(Note note) {
     validator.validate(note);
     if (Objects.isNull(note.getId())) {
-      note.setUser(userService.getCurrentUser());
+      User userByEmail = userService.getUserByEmail(note.getUser().getEmail());
+      note.setUser(userByEmail);
     } else {
       Note persistedNote = getNote(note.getId());
+      if (Objects.nonNull(note.getId()) && !Objects.equals(persistedNote.getUser(), note.getUser())) {
+        throw new FieldIncorrectException("Note user must be the current authorized user.");
+      }
       note.setUser(persistedNote.getUser());
     }
     return noteRepository.save(note);

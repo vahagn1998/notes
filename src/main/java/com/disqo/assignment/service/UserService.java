@@ -3,8 +3,6 @@ package com.disqo.assignment.service;
 import com.disqo.assignment.entity.User;
 
 public interface UserService {
-  User getCurrentUser();
-
   User getUser(long id);
 
   User getUserByEmail(String email);
