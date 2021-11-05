@@ -1,0 +1,63 @@
+###
+
+# curl --location --request POST 'http://localhost:8080/login'
+#--header 'Content-Type: application/x-www-form-urlencoded'
+#--data-urlencode 'username=one@ts.ts'
+#--data-urlencode 'password=password1'
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=one%40ts.ts&password=password1
+
+###
+
+# curl --location --request GET 'http://localhost:8080/note/1'
+#--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExNjgxMywiZXhwIjoxNjM2MTIwNDEzfQ.pyIkz_oj6h1Tm6iKUGJJG_0FefgG-RaJbt6YDW1jrwE' \
+GET http://localhost:8080/note/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExNjgxMywiZXhwIjoxNjM2MTIwNDEzfQ.pyIkz_oj6h1Tm6iKUGJJG_0FefgG-RaJbt6YDW1jrwE
+
+###
+
+# curl --location --request POST 'http://localhost:8080/note'
+#--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExNjgxMywiZXhwIjoxNjM2MTIwNDEzfQ.pyIkz_oj6h1Tm6iKUGJJG_0FefgG-RaJbt6YDW1jrwE'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "title": "aaaa",
+#    "note": "boteee"
+#}'
+POST http://localhost:8080/note
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExNjgxMywiZXhwIjoxNjM2MTIwNDEzfQ.pyIkz_oj6h1Tm6iKUGJJG_0FefgG-RaJbt6YDW1jrwE
+Content-Type: application/json
+
+{
+  "title": "aaaa",
+  "note": "boteee"
+}
+
+###
+
+# curl --location --request PUT 'http://localhost:8080/note/1'
+#--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExMTUzMiwiZXhwIjoxNjM2MTE1MTMyfQ.iiW4Sq720SDClcyeSOUzPjblWPyAd5kYaaOyu3amZDY'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "title": "aaaa",
+#    "note": "gsdfgsds"
+#}'
+PUT http://localhost:8080/note/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExMTUzMiwiZXhwIjoxNjM2MTE1MTMyfQ.iiW4Sq720SDClcyeSOUzPjblWPyAd5kYaaOyu3amZDY
+Content-Type: application/json
+
+{
+  "title": "aaaa",
+  "note": "gsdfgsds"
+}
+
+###
+
+# curl --location --request GET 'http://localhost:8080/note/title/aaaa'
+#--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExMTUzMiwiZXhwIjoxNjM2MTE1MTMyfQ.iiW4Sq720SDClcyeSOUzPjblWPyAd5kYaaOyu3amZDY' \
+GET http://localhost:8080/note/title/aaaa
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbmVAdHMudHMiLCJyb2xlcyI6WyJST0xFX0NVU1RPTUVSIl0sImlhdCI6MTYzNjExMTUzMiwiZXhwIjoxNjM2MTE1MTMyfQ.iiW4Sq720SDClcyeSOUzPjblWPyAd5kYaaOyu3amZDY
+
+###
+
